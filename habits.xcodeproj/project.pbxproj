@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3F7947E82DC24E6C00E24BFB /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7947E72DC24E6C00E24BFB /* FirebaseAuth */; };
+		3F7947EA2DC24E6C00E24BFB /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7947E92DC24E6C00E24BFB /* FirebaseCore */; };
+		3F7947EC2DC24E6C00E24BFB /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7947EB2DC24E6C00E24BFB /* FirebaseDatabase */; };
+		3F7947EE2DC24E6C00E24BFB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7947ED2DC24E6C00E24BFB /* FirebaseFirestore */; };
+		3F7947F02DC24E6C00E24BFB /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7947EF2DC24E6C00E24BFB /* FirebaseStorage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		3F7947A72DC230B300E24BFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +60,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F7947EC2DC24E6C00E24BFB /* FirebaseDatabase in Frameworks */,
+				3F7947EE2DC24E6C00E24BFB /* FirebaseFirestore in Frameworks */,
+				3F7947EA2DC24E6C00E24BFB /* FirebaseCore in Frameworks */,
+				3F7947F02DC24E6C00E24BFB /* FirebaseStorage in Frameworks */,
+				3F7947E82DC24E6C00E24BFB /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +125,11 @@
 			);
 			name = habits;
 			packageProductDependencies = (
+				3F7947E72DC24E6C00E24BFB /* FirebaseAuth */,
+				3F7947E92DC24E6C00E24BFB /* FirebaseCore */,
+				3F7947EB2DC24E6C00E24BFB /* FirebaseDatabase */,
+				3F7947ED2DC24E6C00E24BFB /* FirebaseFirestore */,
+				3F7947EF2DC24E6C00E24BFB /* FirebaseStorage */,
 			);
 			productName = habits;
 			productReference = 3F7947992DC230AF00E24BFB /* habits.app */;
@@ -195,6 +213,9 @@
 			);
 			mainGroup = 3F7947902DC230AF00E24BFB;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				3F7947E62DC24AD300E24BFB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3F79479A2DC230AF00E24BFB /* Products */;
 			projectDirPath = "";
@@ -550,6 +571,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3F7947E62DC24AD300E24BFB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3F7947E72DC24E6C00E24BFB /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F7947E62DC24AD300E24BFB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		3F7947E92DC24E6C00E24BFB /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F7947E62DC24AD300E24BFB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		3F7947EB2DC24E6C00E24BFB /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F7947E62DC24AD300E24BFB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		3F7947ED2DC24E6C00E24BFB /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F7947E62DC24AD300E24BFB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		3F7947EF2DC24E6C00E24BFB /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F7947E62DC24AD300E24BFB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3F7947912DC230AF00E24BFB /* Project object */;
 }
