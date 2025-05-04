@@ -7,6 +7,7 @@
 
 
 import SwiftUI
+import ProgressHUD
 
 struct HabitDetailView: View {
     @StateObject private var viewModel: HabitDetailViewModel
@@ -28,12 +29,19 @@ struct HabitDetailView: View {
                 VStack {
                     Text("Times completed: \(stats.totalCompleted)")
                     Text("Rate: \(String(format: "%.0f%%", stats.completionRate * 100))")
-                    Text("Completion String: \(stats.streak) Day")
+                    Text("Streak: \(stats.streak) day(s)")
                 }
             }
 
-            Button("Completion Today") {
-            viewModel.markCompleted()
+            Button("Complete Today") {
+                ProgressHUD.animate("Marking as Completed...")
+                viewModel.markCompleted { success, message in
+                    if success {
+                        ProgressHUD.succeed("Completed!")
+                    } else {
+                        ProgressHUD.failed(message ?? "Something went wrong.")
+                    }
+                }
             }
             .buttonStyle(.borderedProminent)
 
@@ -41,5 +49,11 @@ struct HabitDetailView: View {
         }
         .padding()
         .navigationTitle("Habit Details")
+        .onAppear {
+            ProgressHUD.animate("Fetching Stats...", .circleStrokeSpin)
+            viewModel.fetchStats {
+                ProgressHUD.dismiss()
+            }
+        }
     }
 }

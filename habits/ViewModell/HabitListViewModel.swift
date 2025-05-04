@@ -8,21 +8,29 @@
 
 import Foundation
 import Combine
+import FirebaseAuth  // ضروري للوصول إلى Auth.auth()
 
 class HabitListViewModel: ObservableObject {
     @Published var habits: [Habit] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
-    
+
     private let habitService: HabitServiceProtocol
     private var cancellables = Set<AnyCancellable>()
-    
+
     init(habitService: HabitServiceProtocol) {
         self.habitService = habitService
         loadHabits()
     }
-    
+
     func loadHabits() {
+        guard Auth.auth().currentUser != nil else {
+           // print("⛔️ لا يوجد مستخدم مسجل حاليًا.")
+            self.habits = []
+            self.isLoading = false
+            return
+        }
+
         isLoading = true
         habitService.fetchHabits { [weak self] result in
             DispatchQueue.main.async {
@@ -36,7 +44,7 @@ class HabitListViewModel: ObservableObject {
             }
         }
     }
-    
+
     func deleteHabit(id: String) {
         habitService.deleteHabit(id: id) { [weak self] result in
             DispatchQueue.main.async {
@@ -49,7 +57,7 @@ class HabitListViewModel: ObservableObject {
             }
         }
     }
-    
+
     func refresh() {
         loadHabits()
     }
