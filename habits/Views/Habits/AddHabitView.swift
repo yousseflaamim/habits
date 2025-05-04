@@ -7,6 +7,7 @@
 
 
 import SwiftUI
+import ProgressHUD
 
 struct AddHabitView: View {
     @ObservedObject var viewModel: AddHabitViewModel
@@ -21,13 +22,19 @@ struct AddHabitView: View {
                     Text("Daily").tag(Habit.HabitFrequency.daily)
                     Text("Weekly").tag(Habit.HabitFrequency.weekly)
                     Text("Monthly").tag(Habit.HabitFrequency.monthly)
-                    
                 }
             }
 
             Button("Add") {
-            viewModel.addHabit()
-            dismiss()
+                ProgressHUD.animate("Adding Habit...")
+                viewModel.addHabit { success, message in
+                    if success {
+                        ProgressHUD.succeed(message, delay: 2.5)
+                        dismiss()
+                    } else {
+                        ProgressHUD.failed(message)
+                    }
+                }
             }
         }
         .navigationTitle("New Habit")

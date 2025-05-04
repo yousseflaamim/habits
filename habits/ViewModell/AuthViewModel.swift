@@ -19,33 +19,38 @@ class AuthViewModel: ObservableObject {
         checkAuthStatus()
     }
 
-    func login(email: String, password: String) {
-        authService.login(email: email, password: password) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let user):
-                    self?.user = user
-                    self?.isAuthenticated = true
-                case .failure(let error):
-                    self?.errorMessage = error.localizedDescription
+    func login(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
+            Auth.auth().signIn(withEmail: email, password: password) { result, error in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(()))
                 }
             }
         }
-    }
+    func register(email: String, password: String, displayName: String, completion: @escaping (Bool, String) -> Void) {
+            Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                if let error = error {
+                    completion(false, error.localizedDescription)
+                    return
+                }
 
-    func register(email: String, password: String, displayName: String) {
-        authService.register(email: email, password: password, displayName: displayName) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let user):
-                    self?.user = user
-                    self?.isAuthenticated = true
-                case .failure(let error):
-                    self?.errorMessage = error.localizedDescription
+                if let user = result?.user {
+                    let changeRequest = user.createProfileChangeRequest()
+                    changeRequest.displayName = displayName
+                    changeRequest.commitChanges { error in
+                        if let error = error {
+                            completion(false, error.localizedDescription)
+                            return
+                        }
+                        completion(true, "Account created successfully!")
+                    }
+                } else {
+                    completion(false, "Unknown error occurred.")
                 }
             }
         }
-    }
+
 
     func logout() {
         authService.logout()

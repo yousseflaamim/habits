@@ -7,12 +7,13 @@
 
 
 import Foundation
-import SPIndicator
 
 class AddHabitViewModel: ObservableObject {
     @Published var title = ""
     @Published var description = ""
     @Published var frequency: Habit.HabitFrequency = .daily
+    @Published var isLoading: Bool = false
+    @Published var message: String = ""
 
     private let habitService: HabitServiceProtocol
 
@@ -20,10 +21,10 @@ class AddHabitViewModel: ObservableObject {
         self.habitService = habitService
     }
 
-    func addHabit() {
-        // Show loading indicator (Adding title and message)
-        SPIndicator.present(title: "Adding Habit", message: "Please wait...", haptic: .success)
-        
+    func addHabit(completion: @escaping (Bool, String) -> Void) {
+        self.isLoading = true
+        self.message = "Adding Habit..."
+
         let habit = Habit(
             id: UUID().uuidString,
             title: title,
@@ -34,18 +35,14 @@ class AddHabitViewModel: ObservableObject {
         )
 
         habitService.addHabit(habit: habit) { result in
-            // Dismiss the loading indicator
-            //SPIndicator.dismiss()
-
-            switch result {
-            case .success:
-                // Show success message
-                SPIndicator.present(title: "Success", message: "Habit added successfully!", haptic: .success)
-                print("Habit added successfully.")
-            case .failure(let error):
-                // Show error message
-                SPIndicator.present(title: "Error", message: "Failed to add habit: \(error.localizedDescription)", haptic: .error)
-                print("Failed to add habit:", error.localizedDescription)
+            DispatchQueue.main.async {
+                self.isLoading = false
+                switch result {
+                case .success:
+                    completion(true, "Habit added successfully!")
+                case .failure(let error):
+                    completion(false, "Failed to add habit: \(error.localizedDescription)")
+                }
             }
         }
     }
