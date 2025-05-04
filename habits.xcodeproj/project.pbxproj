@@ -12,6 +12,9 @@
 		3F7947EC2DC24E6C00E24BFB /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7947EB2DC24E6C00E24BFB /* FirebaseDatabase */; };
 		3F7947EE2DC24E6C00E24BFB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7947ED2DC24E6C00E24BFB /* FirebaseFirestore */; };
 		3F7947F02DC24E6C00E24BFB /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7947EF2DC24E6C00E24BFB /* FirebaseStorage */; };
+		3F7948272DC2A19A00E24BFB /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7948262DC2A19A00E24BFB /* FirebaseFunctions */; };
+		3F7D49142DC62DF7003549C3 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7D49132DC62DF7003549C3 /* SPIndicator */; };
+		3F7D49172DC6561C003549C3 /* SPAlert in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7D49162DC6561C003549C3 /* SPAlert */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +65,10 @@
 			files = (
 				3F7947EC2DC24E6C00E24BFB /* FirebaseDatabase in Frameworks */,
 				3F7947EE2DC24E6C00E24BFB /* FirebaseFirestore in Frameworks */,
+				3F7D49172DC6561C003549C3 /* SPAlert in Frameworks */,
+				3F7D49142DC62DF7003549C3 /* SPIndicator in Frameworks */,
 				3F7947EA2DC24E6C00E24BFB /* FirebaseCore in Frameworks */,
+				3F7948272DC2A19A00E24BFB /* FirebaseFunctions in Frameworks */,
 				3F7947F02DC24E6C00E24BFB /* FirebaseStorage in Frameworks */,
 				3F7947E82DC24E6C00E24BFB /* FirebaseAuth in Frameworks */,
 			);
@@ -130,6 +136,9 @@
 				3F7947EB2DC24E6C00E24BFB /* FirebaseDatabase */,
 				3F7947ED2DC24E6C00E24BFB /* FirebaseFirestore */,
 				3F7947EF2DC24E6C00E24BFB /* FirebaseStorage */,
+				3F7948262DC2A19A00E24BFB /* FirebaseFunctions */,
+				3F7D49132DC62DF7003549C3 /* SPIndicator */,
+				3F7D49162DC6561C003549C3 /* SPAlert */,
 			);
 			productName = habits;
 			productReference = 3F7947992DC230AF00E24BFB /* habits.app */;
@@ -215,6 +224,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				3F7947E62DC24AD300E24BFB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				3F7D49122DC62DF7003549C3 /* XCRemoteSwiftPackageReference "SPIndicator" */,
+				3F7D49152DC6561C003549C3 /* XCRemoteSwiftPackageReference "SPAlert" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3F79479A2DC230AF00E24BFB /* Products */;
@@ -581,6 +592,22 @@
 				minimumVersion = 11.12.0;
 			};
 		};
+		3F7D49122DC62DF7003549C3 /* XCRemoteSwiftPackageReference "SPIndicator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ivanvorobei/SPIndicator";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.5;
+			};
+		};
+		3F7D49152DC6561C003549C3 /* XCRemoteSwiftPackageReference "SPAlert" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mlouli/SPAlert.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -608,6 +635,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3F7947E62DC24AD300E24BFB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		3F7948262DC2A19A00E24BFB /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F7947E62DC24AD300E24BFB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		3F7D49132DC62DF7003549C3 /* SPIndicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F7D49122DC62DF7003549C3 /* XCRemoteSwiftPackageReference "SPIndicator" */;
+			productName = SPIndicator;
+		};
+		3F7D49162DC6561C003549C3 /* SPAlert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F7D49152DC6561C003549C3 /* XCRemoteSwiftPackageReference "SPAlert" */;
+			productName = SPAlert;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
