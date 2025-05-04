@@ -11,16 +11,18 @@ import Firebase
 @main
 struct habitsApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AuthScreen()
         }
     }
 }
 
-class AppDelegate : NSObject , UIApplicationDelegate{
-    func application (_application: UIApplication, didFinishLaunchingWithOptions launchOption : [UIApplication.LaunchOptionsKey: Any]?)-> Bool {
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         return true
     }
 }
+
