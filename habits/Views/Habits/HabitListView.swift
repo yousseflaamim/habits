@@ -7,6 +7,7 @@
 
 
 import SwiftUI
+import ProgressHUD
 
 struct HabitListView: View {
     @ObservedObject var viewModel: HabitListViewModel
@@ -29,6 +30,24 @@ struct HabitListView: View {
                 }
             }
             .navigationTitle("My Habits")
+            .onAppear {
+                ProgressHUD.animate("Loading habits...", .circleStrokeSpin)
+                viewModel.loadHabits()
+            }
+            .onDisappear {
+               ProgressHUD.dismiss()
+                        }
+            .onChange(of: viewModel.isLoading) { isLoading in
+                if !isLoading {
+                    ProgressHUD.dismiss()
+                }
+            }
+            .onChange(of: viewModel.errorMessage) { message in
+                if let msg = message {
+                    ProgressHUD.failed(msg)
+                }
+            }
         }
     }
 }
+

@@ -23,13 +23,9 @@ struct MainTabView: View {
                     Label("Add custom", systemImage: "plus.circle")
                 }
             
-            Button(action: {
-                authViewModel.logout()
-            }) {
-                Label("Sign Out", systemImage: "power")
-            }
-            .tabItem {
-                Label("Sign Out", systemImage: "power")
+            SettingsTabView()
+                    .tabItem {
+                    Label("Settings", systemImage: "gearshape")
             }
         }
     }
