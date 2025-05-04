@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F65F8022DC785ED00F66D4D /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 3F65F8012DC785ED00F66D4D /* ActivityIndicatorView */; };
+		3F65F8052DC788FE00F66D4D /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 3F65F8042DC788FE00F66D4D /* ProgressHUD */; };
 		3F7947E82DC24E6C00E24BFB /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7947E72DC24E6C00E24BFB /* FirebaseAuth */; };
 		3F7947EA2DC24E6C00E24BFB /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7947E92DC24E6C00E24BFB /* FirebaseCore */; };
 		3F7947EC2DC24E6C00E24BFB /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7947EB2DC24E6C00E24BFB /* FirebaseDatabase */; };
@@ -69,10 +71,12 @@
 				3F7947EC2DC24E6C00E24BFB /* FirebaseDatabase in Frameworks */,
 				3F7B5A062DC765B800C4AE03 /* FirebaseFunctions in Frameworks */,
 				3F7B5A0D2DC7668C00C4AE03 /* SPIndicator in Frameworks */,
+				3F65F8022DC785ED00F66D4D /* ActivityIndicatorView in Frameworks */,
 				3F7947EE2DC24E6C00E24BFB /* FirebaseFirestore in Frameworks */,
 				3F7B5A082DC765B800C4AE03 /* FirebaseInAppMessaging-Beta in Frameworks */,
 				3F7947EA2DC24E6C00E24BFB /* FirebaseCore in Frameworks */,
 				3F7B5A042DC765B800C4AE03 /* FirebaseFirestoreCombine-Community in Frameworks */,
+				3F65F8052DC788FE00F66D4D /* ProgressHUD in Frameworks */,
 				3F7947F02DC24E6C00E24BFB /* FirebaseStorage in Frameworks */,
 				3F7947E82DC24E6C00E24BFB /* FirebaseAuth in Frameworks */,
 			);
@@ -145,6 +149,8 @@
 				3F7B5A072DC765B800C4AE03 /* FirebaseInAppMessaging-Beta */,
 				3F7B5A092DC765B800C4AE03 /* FirebaseMessaging */,
 				3F7B5A0C2DC7668C00C4AE03 /* SPIndicator */,
+				3F65F8012DC785ED00F66D4D /* ActivityIndicatorView */,
+				3F65F8042DC788FE00F66D4D /* ProgressHUD */,
 			);
 			productName = habits;
 			productReference = 3F7947992DC230AF00E24BFB /* habits.app */;
@@ -231,6 +237,8 @@
 			packageReferences = (
 				3F7947E62DC24AD300E24BFB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				3F7B5A0B2DC7668C00C4AE03 /* XCRemoteSwiftPackageReference "SPIndicator" */,
+				3F65F8002DC785ED00F66D4D /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+				3F65F8032DC788FE00F66D4D /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3F79479A2DC230AF00E24BFB /* Products */;
@@ -589,6 +597,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3F65F8002DC785ED00F66D4D /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
+		3F65F8032DC788FE00F66D4D /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.3;
+			};
+		};
 		3F7947E62DC24AD300E24BFB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -608,6 +632,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3F65F8012DC785ED00F66D4D /* ActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F65F8002DC785ED00F66D4D /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			productName = ActivityIndicatorView;
+		};
+		3F65F8042DC788FE00F66D4D /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F65F8032DC788FE00F66D4D /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
+		};
 		3F7947E72DC24E6C00E24BFB /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3F7947E62DC24AD300E24BFB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

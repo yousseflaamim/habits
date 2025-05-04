@@ -12,6 +12,11 @@ import Firebase
 struct habitsApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
+    init() {
+        // إعداد ProgressHUD مرة واحدة
+        ProgressHUDConfig.configure()
+    }
+
     var body: some Scene {
         WindowGroup {
             AuthScreen()
@@ -20,9 +25,9 @@ struct habitsApp: App {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         return true
     }
 }
-

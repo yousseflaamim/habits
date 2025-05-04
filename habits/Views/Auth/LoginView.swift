@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ProgressHUD
 
 
 
@@ -49,7 +50,20 @@ struct LoginView: View {
                 }
 
                 Button(action: {
-                authViewModel.login(email: email, password: password)
+                    ProgressHUD.animate("Is loggin...")
+                    authViewModel.login(email: email, password: password) { result in
+                        switch result {
+                        case .success:
+                            ProgressHUD.succeed("Welcome!", delay: 1.5)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
+                                authViewModel.isAuthenticated = true
+                            }
+
+                        case .failure(let error):
+                            ProgressHUD.failed("Login failed: \(error.localizedDescription)")
+                        }
+                    }
+                    
                 }) {
                 Text("Login")
                 .foregroundColor(.white)
