@@ -8,7 +8,7 @@
 
 import Foundation
 import Combine
-import FirebaseAuth  // ضروري للوصول إلى Auth.auth()
+import FirebaseAuth
 
 class HabitListViewModel: ObservableObject {
     @Published var habits: [Habit] = []
@@ -25,7 +25,7 @@ class HabitListViewModel: ObservableObject {
 
     func loadHabits() {
         guard Auth.auth().currentUser != nil else {
-           // print("⛔️ لا يوجد مستخدم مسجل حاليًا.")
+            
             self.habits = []
             self.isLoading = false
             return
