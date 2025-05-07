@@ -7,11 +7,21 @@
 
 import SwiftUI
 
-struct AppTheme {
-    static let primaryColor = Color.blue
-    static let secondaryColor = Color.gray
-    static let backgroundColor = Color(.systemGroupedBackground)
+// Theme.swift
+import SwiftUI
 
-    static let cornerRadius: CGFloat = 12
-    static let padding: CGFloat = 16
+struct AppTheme {
+//color princ
+    static let primaryColor = Color(red: 0.26, green: 0.36, blue: 0.86)
+    static let secondaryColor = Color(red: 0.93, green: 0.94, blue: 0.98)
+    static let accentColor = Color(red: 0.98, green: 0.45, blue: 0.45)
+    
+    // color tet
+    static let textPrimary = Color.primary
+    static let textSecondary = Color.gray
+    
+    // raduis corner
+    static let cornerRadius: CGFloat = 14
+    static let shadowRadius: CGFloat = 6
+    static let shadowColor = Color.black.opacity(0.1)
 }

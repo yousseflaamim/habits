@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseStorage
 
 class FirebaseAuthService: AuthServiceProtocol {
     func login(email: String, password: String, completion: @escaping (Result<AppUser, Error>) -> Void) {
@@ -56,7 +57,49 @@ class FirebaseAuthService: AuthServiceProtocol {
             id: user.uid,
             email: user.email ?? "",
             displayName: user.displayName ?? "",
-            joinedDate: user.metadata.creationDate ?? Date() 
+            joinedDate: user.metadata.creationDate ?? Date()
         )
+    }
+    
+    // MARK: - New Methods
+    func updateDisplayName(_ name: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let user = Auth.auth().currentUser else {
+            completion(.failure(NSError(domain: "AuthError", code: -1, userInfo: [NSLocalizedDescriptionKey: "No user logged in"])))
+            return
+        }
+        
+        let changeRequest = user.createProfileChangeRequest()
+        changeRequest.displayName = name
+        changeRequest.commitChanges { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+
+    func uploadProfileImage(_ imageData: Data, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let userId = Auth.auth().currentUser?.uid else {
+            completion(.failure(NSError(domain: "AuthError", code: -1, userInfo: [NSLocalizedDescriptionKey: "No user logged in"])))
+            return
+        }
+        
+        let storageRef = Storage.storage().reference().child("profile_images/\(userId).jpg")
+        
+        storageRef.putData(imageData, metadata: nil) { _, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            storageRef.downloadURL { url, error in
+                if let error = error {
+                    completion(.failure(error))
+                } else if let url = url {
+                    completion(.success(url.absoluteString))
+                }
+            }
+        }
     }
 }

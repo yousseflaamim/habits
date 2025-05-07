@@ -13,6 +13,6 @@ struct AppUser: Identifiable, Codable {
     let email: String
     var displayName: String
     let joinedDate: Date
-    
+    var profileImageUrl: String?
     
 }
