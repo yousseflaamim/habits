@@ -54,7 +54,7 @@ struct SettingsTabView: View {
             .sheet(isPresented: $showingImagePicker) {
                 
                 //show ImagePicker
-                
+                 
                 ImagePicker(image: { image in
                     userViewModel.updateProfileImage(image)
                     showingImagePicker = false
