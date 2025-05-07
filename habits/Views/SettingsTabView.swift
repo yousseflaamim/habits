@@ -7,8 +7,7 @@
 import SwiftUI
 import ProgressHUD
 
-import SwiftUI
-import ProgressHUD
+
 
 struct SettingsTabView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -25,17 +24,13 @@ struct SettingsTabView: View {
     var body: some View {
         NavigationView {
             Form {
-                // profile sec
                 Section(header: Text("Profile")
                     .font(.headline)
                     .foregroundColor(AppTheme.primaryColor)
                 ) {
                     HStack(spacing: 16) {
-                        
                         profileImageView
-                        
                         userInfoView
-                        
                         editButtonView
                     }
                     .padding(.vertical, 8)
@@ -44,7 +39,6 @@ struct SettingsTabView: View {
                 }
                 .listRowBackground(AppTheme.secondaryColor.opacity(0.3))
                 
-                // sec go out
                 Section {
                     logoutButtonView
                 }
@@ -52,9 +46,6 @@ struct SettingsTabView: View {
             }
             .accentColor(AppTheme.primaryColor)
             .sheet(isPresented: $showingImagePicker) {
-                
-                //show ImagePicker
-                 
                 ImagePicker(image: { image in
                     userViewModel.updateProfileImage(image)
                     showingImagePicker = false
@@ -71,14 +62,15 @@ struct SettingsTabView: View {
         }
     }
     
-    // MARK: - stc vuew
+    // MARK: - Subviews
+    
     private var profileImageView: some View {
         Group {
             if let urlString = userViewModel.user?.profileImageUrl, let url = URL(string: urlString) {
                 AsyncImage(url: url) { image in
                     image.resizable()
                 } placeholder: {
-                    ProgressView(progress: 1.5)
+                    ProgressView()
                         .progressViewStyle(CircularProgressViewStyle())
                         .scaleEffect(1.5)
                 }
@@ -94,6 +86,7 @@ struct SettingsTabView: View {
             }
         }
     }
+   
     
     private var userInfoView: some View {
         VStack(alignment: .leading, spacing: 4) {

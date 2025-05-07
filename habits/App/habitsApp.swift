@@ -13,7 +13,7 @@ struct habitsApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
     init() {
-        // إعداد ProgressHUD مرة واحدة
+        
         ProgressHUDConfig.configure()
     }
 

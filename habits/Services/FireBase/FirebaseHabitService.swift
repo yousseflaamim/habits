@@ -72,6 +72,14 @@ class FirebaseHabitService: HabitServiceProtocol {
         let rate = Double(total) / Double(daysSinceStart)
         return HabitStats(totalCompleted: total, streak: streak, completionRate: rate)
     }
+    func updateHabit(habit: Habit, completion: @escaping (Result<Void, Error>) -> Void) {
+            do {
+                try db.collection("users").document(userId).collection("habits").document(habit.id).setData(from: habit)
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
 
     private func calculateStreak(dates: [Date]) -> Int {
         let sorted = dates.sorted(by: >)
@@ -88,4 +96,28 @@ class FirebaseHabitService: HabitServiceProtocol {
 
         return streak
     }
+    func getHabitProgressData(id: String, completion: @escaping (Result<[HabitProgressData], Error>) -> Void) {
+           db.collection("users").document(userId).collection("habits").document(id).getDocument { document, error in
+               if let error = error {
+                   completion(.failure(error))
+                   return
+               }
+               
+               guard let document = document,
+                     let habit = try? document.data(as: Habit.self) else {
+                   completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Habit not found"])))
+                   return
+               }
+               
+               let groupedData = Dictionary(grouping: habit.completedDates) { date in
+                   Calendar.current.startOfDay(for: date)
+               }
+               
+               let progressData = groupedData.map { date, dates in
+                   HabitProgressData(date: date, count: dates.count)
+               }.sorted { $0.date < $1.date }
+               
+               completion(.success(progressData))
+           }
+       }
 }
