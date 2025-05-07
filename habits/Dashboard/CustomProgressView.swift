@@ -1,4 +1,12 @@
 //
+//  CustomProgressView.swift
+//  habits
+//
+//  Created by gio on 5/8/25.
+//
+
+
+//
 //  ProgressView.swift
 //  habits
 //
@@ -8,12 +16,13 @@
 
 import SwiftUI
 
-struct ProgressView: View {
+struct CustomProgressView
+: View {
     let progress: Double
 
     var body: some View {
         VStack(spacing: 16) {
-            Text("التقدم العام")
+            Text("General Progress")
                 .font(.headline)
 
             SwiftUI.ProgressView(value: progress)

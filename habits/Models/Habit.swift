@@ -7,8 +7,6 @@
 
 
 
-import FirebaseFirestore
-
 import Foundation
 
 struct Habit: Identifiable, Codable {
@@ -22,9 +20,4 @@ struct Habit: Identifiable, Codable {
     enum HabitFrequency: String, Codable {
         case daily, weekly, monthly
     }
-
-    var isCompletedToday: Bool {
-        Calendar.current.isDateInToday(completedDates.last ?? .distantPast)
-    }
 }
-
