@@ -25,6 +25,11 @@ struct AddHabitView: View {
                 }
             }
 
+            // shosse time section
+            Section(header: Text("Reminder Time")) {
+                DatePicker("Select Reminder Time", selection: $viewModel.reminderTime, displayedComponents: .hourAndMinute)
+            }
+
             Button("Add") {
                 ProgressHUD.animate("Adding Habit...")
                 viewModel.addHabit { success, message in

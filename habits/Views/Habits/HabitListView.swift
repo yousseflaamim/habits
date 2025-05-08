@@ -233,7 +233,7 @@ struct HabitRowView: View {
     
     var body: some View {
         HStack(spacing: 12) {
-            // معلومات العادة
+            // information habits
             VStack(alignment: .leading, spacing: 6) {
                 Text(habit.title)
                     .font(.system(.headline, design: .rounded))

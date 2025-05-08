@@ -29,8 +29,14 @@ class FirebaseHabitService: HabitServiceProtocol {
 
     func addHabit(habit: Habit, completion: @escaping (Result<Void, Error>) -> Void) {
         do {
-            try db.collection("users").document(userId).collection("habits").document(habit.id).setData(from: habit)
-            completion(.success(()))
+            try db.collection("users").document(userId).collection("habits").document(habit.id).setData(from: habit) { error in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    NotificationService.shared.scheduleReminder(for: habit) 
+                    completion(.success(()))
+                }
+            }
         } catch {
             completion(.failure(error))
         }
@@ -41,6 +47,7 @@ class FirebaseHabitService: HabitServiceProtocol {
             if let error = error {
                 completion(.failure(error))
             } else {
+                NotificationService.shared.cancelReminder(for: id)
                 completion(.success(()))
             }
         }
