@@ -14,6 +14,7 @@ class AddHabitViewModel: ObservableObject {
     @Published var frequency: Habit.HabitFrequency = .daily
     @Published var isLoading: Bool = false
     @Published var message: String = ""
+    @Published var reminderTime: Date = Date()
 
     private let habitService: HabitServiceProtocol
 
@@ -31,7 +32,8 @@ class AddHabitViewModel: ObservableObject {
             description: description,
             startDate: Date(),
             frequency: frequency,
-            completedDates: []
+            completedDates: [],
+            reminderTime: reminderTime 
         )
 
         habitService.addHabit(habit: habit) { result in
@@ -39,9 +41,14 @@ class AddHabitViewModel: ObservableObject {
                 self.isLoading = false
                 switch result {
                 case .success:
+                    self.title = ""
+                    self.description = ""
+                    self.frequency = .daily
+                    self.reminderTime = Date()
                     completion(true, "Habit added successfully!")
+                    
                 case .failure(let error):
-                    completion(false, "Failed to add habit: \(error.localizedDescription)")
+                    completion(false, "Failed to add habit: $error.localizedDescription)")
                 }
             }
         }
